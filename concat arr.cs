@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LeetCode_Problems
 {
@@ -193,6 +194,62 @@ namespace LeetCode_Problems
             }
 
             return minNumberOfMoves;
+        }
+
+        public int[] LeftRightDifference(int[] nums)
+        {
+            int n = nums.Length;
+            int[] answers = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                int leftSum = 0;
+                int rightSum = 0;
+
+                for(int j = 0; j < i; j++)
+                {
+                    leftSum += nums[j];
+                }
+
+                for(int k = i + 1;  k < n; k++)
+                {
+                    rightSum += nums[k];
+                }
+
+                answers[i] = Math.Abs(leftSum - rightSum);
+            }
+
+            return answers;
+        }
+
+        public int[] NumberGame(int[] nums)
+        {
+            Array.Sort(nums);
+            List<int> numsList = nums.ToList();
+
+            int[] arr = new int[nums.Length];
+            int arrIndex = 0;
+
+            while (numsList.Count > 0) { 
+                int aliceRemoved = numsList[0];
+                numsList.RemoveAt(0);
+
+                if(numsList.Count == 0)
+                {
+                    arr[arrIndex] = aliceRemoved;
+                    break;
+                }
+
+                int bobRemoved = numsList[0];
+                numsList.RemoveAt(0);
+
+                arr[arrIndex] = bobRemoved;
+                arrIndex++;
+
+                arr[arrIndex] = aliceRemoved;
+                arrIndex++;
+            }
+
+            return arr;
         }
     }
 }

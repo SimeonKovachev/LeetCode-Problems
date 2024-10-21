@@ -3,11 +3,14 @@
 Arrays concatenator = new Arrays();
 
 //string[] words = ["ad", "bd", "aaab", "baa", "badab"];
-int[] seats = [3, 1, 5];
-int[] students = [2, 7, 4];
+string[] sentences = ["a", "cb"];
+string[] students = ["ab", "c"];
+
+int[] nums = [2, 3, 2];
+int[] index = [1, 2];
 
 string allowed = "ab";
 
-int result = concatenator.MinMovesToSeat(seats, students);
+int[] result = concatenator.FindIntersectionValues(nums, index);
 
 Console.WriteLine(result);

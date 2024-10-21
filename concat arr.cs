@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
+﻿
 namespace LeetCode_Problems
 {
     public class Arrays
@@ -250,6 +242,80 @@ namespace LeetCode_Problems
             }
 
             return arr;
+        }
+
+        public int MostWordsFound(string[] sentences)
+        {
+            int maxNumberOfWords = 0;
+            for (int i = 0; i < sentences.Length; i++)
+            {
+                string sentence = sentences[i].ToLower();
+                int numberOfWords = sentence.Split(' ').Count();
+                if (numberOfWords > maxNumberOfWords)
+                {
+                    maxNumberOfWords = numberOfWords;
+                }
+            }
+
+            return maxNumberOfWords;
+        }
+
+        public string[] SortPeople(string[] names, int[] heights)
+        {
+           Array.Sort(heights, names);
+
+            Array.Reverse(names);
+
+            return names;
+        }
+
+        public bool ArrayStringsAreEqual(string[] word1, string[] word2)
+        {
+            string finalWord1 = string.Join("", word1);
+            string finalWord2 = string.Join("", word2);
+
+            if(finalWord1 == finalWord2) return true;
+            return false;
+        }
+
+        public int[] CreateTargetArray(int[] nums, int[] index)
+        {
+            int n = index.Length;
+            List<int> target = new List<int>(n);
+            for (int i = 0; i < n; i++)
+            {
+                int number = nums[i];
+                int currentIndex = index[i];
+                target.Insert(currentIndex, number);
+            }
+            return target.ToArray();
+        }
+
+        public int[] FindIntersectionValues(int[] nums1, int[] nums2)
+        {
+            int answer1 = 0;
+            int answer2 = 0;
+
+            for (int i = 0; i < nums1.Length; i++)
+            {
+                int currentNumber = nums1[i];
+                if (nums2.Contains(currentNumber))
+                {
+                    answer1++;
+                }
+            }
+
+            for (int j = 0; j < nums2.Length; j++)
+            {
+                int currentNumber = nums2[j];
+                if (nums1.Contains(currentNumber))
+                {
+                    answer2++;
+                }
+            }
+
+            int[] result = { answer1, answer2 };
+            return result;
         }
     }
 }

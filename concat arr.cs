@@ -317,5 +317,160 @@ namespace LeetCode_Problems
             int[] result = { answer1, answer2 };
             return result;
         }
+
+        public string RestoreString(string s, int[] indices)
+        {
+            char[] result = new char[s.Length];
+            for (int i = 0; i < s.Length; i++)
+            {
+                char currentLetter = s[i];
+                int index = indices[i];
+
+                result[index] = currentLetter;
+            }
+
+            return new string(result);
+        }
+
+        public int[] RunningSum(int[] nums)
+        {
+            int n = nums.Length;
+            int[] result = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                int runningSum = 0;
+                for(int j = 0; j < i + 1; j++)
+                {
+                    runningSum += nums[j];
+                }
+
+                result[i] = runningSum;
+            }
+
+            return result;
+        }
+
+        public int[] SmallerNumbersThanCurrent(int[] nums)
+        {
+            int n = nums.Length;
+            int[] result = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                int count = 0;
+                int currentNumber = nums[i];
+                for (int j = 0; j < n; j++)
+                {
+                    int diffNumber = nums[j];
+                    if (currentNumber > diffNumber)
+                    {
+                        count++;
+                    }
+                }
+                result[i] = count;
+            }
+
+            return result;
+        }
+
+        public int LargestAltitude(int[] gain)
+        {
+            int currentAltitude = 0;
+            int highestAltitude = 0;
+
+            foreach (int g in gain)
+            {
+                currentAltitude += g;
+                highestAltitude = Math.Max(highestAltitude, currentAltitude);
+            }
+
+            return highestAltitude;
+        }
+
+        public int CountMatches(IList<IList<string>> items, string ruleKey, string ruleValue)
+        {
+            int matchingItemNumber = 0;
+            for (int i = 0; i < items.Count; i++)
+            {
+                for (int j = 0; j < items[i].Count; j++)
+                {
+                    string currentValue = items[i][j];
+                    if (ruleKey == "type" && ruleValue == currentValue && j == 0)
+                    {
+                        matchingItemNumber++;
+                    }
+
+                    else if (ruleKey == "color" && ruleValue == currentValue && j == 1)
+                    {
+                        matchingItemNumber++;
+                    }
+
+                    else if (ruleKey == "name" && ruleValue == currentValue && j == 2)
+                    {
+                        matchingItemNumber++;
+                    }
+                }
+            }
+
+            return matchingItemNumber;
+        }
+
+        public bool CanAliceWin(int[] nums)
+        {
+            int single_sum = 0;
+            int double_sum = 0;
+
+           foreach (int num in nums)
+            {
+                if(num>= 0 && num <= 9)
+                    single_sum += num;
+                else
+                    double_sum += num;
+            }
+
+            return single_sum != double_sum;
+        }
+
+        public int SumOddLengthSubarrays(int[] arr)
+        {
+            int totalSum = 0;
+            int n = arr.Length;
+
+            for(int start = 0; start < n; start++)
+            {
+                for( int length = 1; start + length <= n; length += 2)
+                {
+                    int subarraySum = 0;
+
+                    for( int i = start; i < start + length; i++)
+                    {
+                        subarraySum += arr[i];
+                    }
+
+                    totalSum += subarraySum;
+                }
+
+            }
+
+            return totalSum;
+        }
+
+        public int AddedInteger(int[] nums1, int[] nums2)
+        {
+            Array.Sort(nums1);
+            Array.Sort(nums2);
+
+            int x = nums2[0] - nums1[0];
+            int n = nums1.Length;
+
+            for(int i = 0; i < n; i++)
+            {
+                if (nums2[i] - nums1[i] != x)
+                {
+                    return 0;
+                }
+            }
+
+            return x;
+        }
     }
 }

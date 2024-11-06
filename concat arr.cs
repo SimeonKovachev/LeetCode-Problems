@@ -472,5 +472,91 @@ namespace LeetCode_Problems
 
             return x;
         }
+
+        public int MaximumNumberOfStringPairs(string[] words)
+        {
+            int res = 0;
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                for (int j = 0; j < words.Length; j++)
+                {
+                    string reversedWord = new string(words[j].Reverse().ToArray());
+
+                    if (words[i].Equals(reversedWord) && 0 <= i && i < j && j < words.Length)
+                    {
+                        res++;
+                    }
+                }
+            }
+
+            return res;
+        }
+
+        public string DestCity(IList<IList<string>> paths)
+        {
+           HashSet<string> startCities = new HashSet<string>();
+
+            //add all starting cities
+            foreach(var path in paths)
+            {
+                startCities.Add(path[0]);
+            }
+
+            foreach(var path in paths)
+            {
+                string destinationCity = path[1];
+                if(!startCities.Contains(destinationCity))
+                {
+                    return destinationCity;
+                }
+            }
+
+            return "";
+        }
+
+        public int HeightChecker(int[] heights)
+        {
+            int res = 0;
+            int[] expected = new int[heights.Length];
+            Array.Copy(heights, expected, heights.Length);
+            Array.Sort(expected);
+
+            for(int i = 0; i < expected.Length; i++)
+            {
+                if (heights[i] != expected[i])
+                {
+                    res++;
+                }
+            }
+
+            return res;
+        }
+
+        public int CountSeniors(string[] details)
+        {
+            int res = 0;
+
+            foreach(var personDetails in details)
+            {
+                int personAge = int.Parse(personDetails.Substring(11, 2));
+
+                if(personAge > 60) {
+                    res++;
+                }
+            }
+
+            return res;
+        }
+
+        public int FindNumbers(int[] nums)
+        {
+            int res = 0;
+
+            if(nums.Contains(0)) { }
+
+
+            return res;
+        }
     }
 }

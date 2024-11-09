@@ -558,5 +558,72 @@ namespace LeetCode_Problems
 
             return res;
         }
+
+        public IList<string> SplitWordsBySeparator(IList<string> words, char separator)
+        {
+            List<string> result = new();
+
+            foreach(var word in words)
+            {
+                result.AddRange( word.Split(separator, StringSplitOptions.RemoveEmptyEntries));
+            }
+
+            return result;
+        }
+
+        public int SumOfUnique(int[] nums)
+        {
+           /* List<int> uniqueNumbers = nums
+                .GroupBy(x => x)
+                .Where(g => g.Count() == 1)
+                .Select(x => x.Key)
+                .ToList();
+
+            return uniqueNumbers.Sum();*/
+
+            int uniqueNumbers = nums
+               .Where(x => nums.Count(y => y == x) == 1)
+               .Sum();
+
+            return uniqueNumbers;
+        }
+
+       /* public int SingleNumber(int[] nums)
+        {
+            int singleNumber = nums
+                .Where (x => nums.Count(y => y == x) == 1)
+                .FirstOrDefault();
+
+            return singleNumber;
+        }*/
+
+        public int SingleNumber(int[] nums)
+        {
+            int res = 0;
+            foreach (int num in nums)
+            {
+                res ^= num;
+            }
+            return res;
+        }
+
+        public int CountPrefixes(string[] words, string s)
+        {
+            int res = 0;
+            foreach (string word in words)
+            {
+                if (s.StartsWith(word, StringComparison.OrdinalIgnoreCase)) res++;
+            }
+            return res;
+        }
+
+        public int[] PlusOne(int[] digits)
+        {
+            ulong fullNumber = ulong.Parse(string.Join("", digits));
+            fullNumber++;
+
+            int[] result = fullNumber.ToString().Select(digit => int.Parse(digit.ToString())).ToArray();
+            return result;
+        }
     }
 }

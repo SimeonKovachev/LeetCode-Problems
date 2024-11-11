@@ -625,5 +625,55 @@ namespace LeetCode_Problems
             int[] result = fullNumber.ToString().Select(digit => int.Parse(digit.ToString())).ToArray();
             return result;
         }
+
+        public int GetMaximumGenerated(int n)
+        {
+            int[] nums = new int[n + 1];
+            nums[0] = 0;
+            if(1 <= n)
+            {
+              nums[1] = 1;
+            }
+
+            for (int i = 1; i < nums.Length; i++)
+            {
+                if(2 <= 2 * i && 2 * i <= n)
+                {
+                    nums[2 * i] = nums[i];
+                }
+
+                if (2 <= (2 * i) + 1 && (2 * i) + 1 <= n)
+                {
+                    nums[2 * i + 1] = nums[i] + nums[i + 1];
+                }
+            }
+
+            return nums.Max();
+        }
+
+        public int SmallestEqual(int[] nums)
+        {
+            /* List<int> res = new List<int>();
+
+             for(int i = 0; i < nums.Length; i++)
+             {
+                 if(i % 10 == nums[i])
+                 {
+                     res.Add(i);
+                 }
+             }
+
+             if(res.Count == 0) 
+                 return -1;
+
+             return res.Min();*/
+
+            for (int i = 0; i < nums.Length; ++i)
+            {
+                if (i % 10 == nums[i])
+                    return i;
+            }
+            return -1;
+        }
     }
 }

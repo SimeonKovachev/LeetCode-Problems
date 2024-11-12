@@ -675,5 +675,59 @@ namespace LeetCode_Problems
             }
             return -1;
         }
+
+
+        public string[] FindRelativeRanks(int[] score)
+        {
+            //wrong....
+            // I need to create dictionary to save the original indexing. Then map it somehow to the result i crea
+            /* int n = score.Length;
+             Array.Sort(score, (a, b) => b.CompareTo(a));
+             string[] answers = new string[n];
+
+             for (int i = 0; i < n; ++i)
+             {
+                 if (i == 0)
+                     answers[0] = "Gold Medal";
+                 else if (i == 1)
+                     answers[1] = "Silver Medal";
+                 else if (i == 2)
+                     answers[2] = "Bronze Medal";
+                 else
+                     answers[i] = (i + 1).ToString();
+             }
+
+             return answers;*/
+
+            //So we create the dictonary and as Key we use the Athlete Score and for Value we use the index. Then we directly
+            //get the indexedResult[score[i]] this is the index in the sorted array and when we get the index in the dictonary
+            //it finds the correct place and returns the correct index place and we directly pass this in the answers[]
+            int n = score.Length;
+            Dictionary<int, int> indexedResult = new Dictionary<int, int>();
+
+            for (int i = 0; i < n; i++)
+            {
+                indexedResult[score[i]] = i;
+            }
+
+            Array.Sort(score, (a, b) => b.CompareTo(a));
+            string[] answers = new string[n];
+            for (int i = 0; i < n; i++)
+            {
+                //This is better for understanding. This returns the original index. We pass the score[i] which
+                //in the sorted array its the value and by the value(Key in the dictonary) we find the value which is the original index
+                int originalIndex = indexedResult[score[i]];
+
+                if (i == 0)
+                    answers[originalIndex] = "Gold Medal";
+                else if (i == 1)
+                    answers[originalIndex] = "Silver Medal";
+                else if (i == 2)
+                    answers[originalIndex] = "Bronze Medal";
+                else
+                    answers[originalIndex] = (i + 1).ToString();
+            }
+            return answers;
+        }
     }
 }

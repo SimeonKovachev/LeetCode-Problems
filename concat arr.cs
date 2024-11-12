@@ -729,5 +729,26 @@ namespace LeetCode_Problems
             }
             return answers;
         }
+
+        public void MoveZeroes(int[] nums)
+        {
+            int n = nums.Length;
+            int nonZeroIndex = 0;
+
+            for (int i = 0; i < n;i++)
+            {
+                int num = nums[i];
+                if (num != 0)
+                {
+                    nums[nonZeroIndex] = num;
+                    nonZeroIndex++;
+                }
+            }
+
+            for (int i = nonZeroIndex; i < n; i++)
+            {
+                nums[i] = 0;
+            }
+        }
     }
 }

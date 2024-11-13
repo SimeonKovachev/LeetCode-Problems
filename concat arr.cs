@@ -750,5 +750,83 @@ namespace LeetCode_Problems
                 nums[i] = 0;
             }
         }
+
+        //O(n2)
+        public int DifferenceOfSum(int[] nums)
+        {
+            int elementSum = 0;
+            int digitSum = 0;
+            for(int i = 0; i < nums.Length; i++)
+            {
+                int num = nums[i];
+                elementSum += num;
+
+                if(num > 9)
+                {
+                   string digitArr = num.ToString();
+
+                    foreach(char digit in digitArr)
+                    {
+                        digitSum += int.Parse(digit.ToString());
+                    }
+                    continue;
+                }
+                digitSum += num;
+            }
+
+            return Math.Abs(elementSum - digitSum);
+        }
+
+        public bool IsAcronym(IList<string> words, string s)
+        {
+            string newWord = "";
+            foreach (string word in words)
+            {
+                char firstLetter = word.First();
+                newWord += firstLetter;
+            }
+
+            if (newWord == s)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public int SumOfSquares(int[] nums)
+        {
+            int n = nums.Length;
+            int totalSum = 0;
+            for(int i = 0; i < n; i++)
+            {
+                if(n % (i + 1) == 0)
+                {
+                    totalSum += nums[i] * nums[i];
+                }
+            }
+
+            return totalSum;
+        }
+
+        public int[] SeparateDigits(int[] nums)
+        {
+            List<int> result = new List<int>();
+
+            foreach (int num in nums)
+            {
+                if(num > 9)
+                {
+                    for(int i = 0; i < num.ToString().Length;i++)
+                    {
+                        char neutral = num.ToString()[i];
+                        result.Add(int.Parse(neutral.ToString()));
+                    }
+                }
+                else
+                    result.Add(num);
+            }
+
+            return result.ToArray();
+        }
     }
 }

@@ -828,5 +828,40 @@ namespace LeetCode_Problems
 
             return result.ToArray();
         }
+
+        public int FindNonMinOrMax(int[] nums)
+        {
+            int result = -1;
+
+            foreach (int num in nums)
+            {
+                if(nums.Min() != num && nums.Max() != num)
+                {
+                    result = num;
+                }
+            }
+
+            return result;
+        }
+
+        public int MaxProduct(int[] nums)
+        {
+            int maxValue = 0;
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+               for (int j = i + 1; j < nums.Length; j++)
+                {
+                    int currentMaxValue = (nums[i] - 1) * (nums[j] - 1);
+
+                    if (currentMaxValue > maxValue)
+                    {
+                        maxValue = currentMaxValue;
+                    }
+                }
+            }
+
+            return maxValue;
+        }
     }
 }

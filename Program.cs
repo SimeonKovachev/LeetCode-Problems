@@ -1,6 +1,7 @@
 ﻿using LeetCode_Problems;
 
 Arrays concatenator = new Arrays();
+StringTargets stringTargets = new StringTargets();
 
 //string[] words = ["ad", "bd", "aaab", "baa", "badab"];
 string[] sentences = ["a", "b", "c", "ab", "bc", "abc"];
@@ -13,8 +14,8 @@ IList<IList<string>> list = [["London", "New York"], ["New York", "Lima"], ["Lim
 string ruleKey = "type";
 string ruleValue = "phone";
 
-string allowed = "codeleet";
+string allowed = "24123";
 
-int result = concatenator.MaxProduct(nums);
+bool result = stringTargets.IsBalanced(allowed);
 
 Console.WriteLine(result);
